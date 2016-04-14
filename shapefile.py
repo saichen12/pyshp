@@ -827,6 +827,15 @@ class Writer:
                     value = str(value).rjust(size)
                 elif fieldType == 'L':
                     value = str(value)[0].upper()
+                elif fieldType.upper()  == 'C':
+                    value = str(value)
+                    value2= value.encode("utf8")
+                    size2 = len(value)
+                    size3 = len(value2)
+                    if size3 > size2:
+                        value = str(value)[:(size- (size3-size2))].ljust(size-(size3-size2))
+                    else:
+                        value = str(value)[:size].ljust(size)
                 else:
                     value = str(value)[:size].ljust(size)
                 assert len(value) == size
